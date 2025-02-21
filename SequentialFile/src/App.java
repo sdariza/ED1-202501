@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class App {
     public static void main(String[] args) throws Exception {
         JOptionPane.showMessageDialog(null, "Bienvenido al sistema de votación");
-        String fileName = "Votos.txt";
+        String fileName = ".\\SequentialFile\\Votos.txt";
         BufferedWriter writer = null;
         Scanner input = new Scanner(System.in);
         Methods myMethods = new Methods();
