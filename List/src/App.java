@@ -20,6 +20,7 @@ public class App {
         list1.addQueue(0);
         list1.addQueue(2);
         list1.addQueue(3);
+        System.out.println("Lista 1");
         list1.traversal();
 
         System.out.println((list1.search(0) == null) ? "Elemento no encontrado" : "Elemento encontrado");
@@ -28,7 +29,23 @@ public class App {
         list2.addStack(0);
         list2.addStack(2);
         list2.addStack(3);
+        System.out.println("lista 2");
         list2.traversal();
+
+        //Delete
+        System.out.println("Eliminado el elemento 2 de la lista 1");
+        list1.delete(2);
+        System.out.println("Resultado");
+        list1.traversal();
+
+
+        System.out.println("Iniciamos la lista circular simplemente enlazada");
+        CircularSimpleList myCircularSimpleList1 = new CircularSimpleList();
+        myCircularSimpleList1.addQueue(0);
+        myCircularSimpleList1.addQueue(2);
+        myCircularSimpleList1.addQueue(3);
+        System.out.println("Elementos añadidos:");
+        myCircularSimpleList1.traversal();
 
     }
 }

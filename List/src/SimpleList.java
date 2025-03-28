@@ -13,14 +13,17 @@ public class SimpleList extends List {
     @Override
     void addQueue(int theData) {
         Node newNode = new Node(theData);
-        if (first == null)
+        if (first == null) {
             first = newNode;
-        else {
-            Node aux = first;
-            while (aux.next != null) {
-                aux = aux.next;
-            }
-            aux.next = newNode;
+            last = first;
+        } else {
+            // Node aux = first;
+            // while (aux.next != null) {
+            // aux = aux.next;
+            // }
+            // aux.next = newNode;
+            last.next = newNode;
+            last = newNode;
         }
     }
 
@@ -41,7 +44,24 @@ public class SimpleList extends List {
 
     @Override
     void delete(int theData) {
-        // TODO Auto-generated method stub
+        if (first != null) {
+            Node antp = null;
+            if (first.data == theData) {
+                antp = first.next;
+                first.next = null;
+                first = antp;
+            } else {
+                Node p = first;
+                while (p.next != null && p.data != theData) {
+                    antp = p;
+                    p = p.next;
+                }
+                if (p.data == theData) {
+                    antp.next = p.next;
+                    p.next = null;
+                }
+            }
+        }
     }
 
     @Override

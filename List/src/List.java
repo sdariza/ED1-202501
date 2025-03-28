@@ -1,5 +1,7 @@
 public abstract class List {
     protected Node first;
+    protected Node last;
+
 
     abstract void addStack(int theData);
 
