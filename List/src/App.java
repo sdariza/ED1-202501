@@ -32,11 +32,12 @@ public class App {
         System.out.println("lista 2");
         list2.traversal();
 
-        // Delete
+        //Delete
         System.out.println("Eliminado el elemento 2 de la lista 1");
         list1.delete(2);
         System.out.println("Resultado");
         list1.traversal();
+
 
         System.out.println("Iniciamos la lista circular simplemente enlazada");
         CircularSimpleList myCircularSimpleList1 = new CircularSimpleList();
@@ -45,14 +46,22 @@ public class App {
         myCircularSimpleList1.addQueue(3);
         System.out.println("Elementos añadidos:");
         myCircularSimpleList1.traversal();
-        System.out
-                .println((myCircularSimpleList1.search(3) == null) ? "Elemento no encontrado" : "Elemento encontrado");
 
-        System.out.println("Eliminamos el elemento 3");
-        myCircularSimpleList1.delete(3);
-        myCircularSimpleList1.delete(2);
-        myCircularSimpleList1.delete(0);
-        myCircularSimpleList1.traversal();
-
+        // Lista doblemente enlazada SIMPLE
+        System.out.println("Lista doblemente enlazada simple");
+        SimpleDoubleLinkedList myDoubleLinkedList = new SimpleDoubleLinkedList();
+        myDoubleLinkedList.addQueue(10);
+        myDoubleLinkedList.addQueue(20);
+        myDoubleLinkedList.addQueue(30);
+        myDoubleLinkedList.addQueue(40);
+        myDoubleLinkedList.addQueue(130);
+        myDoubleLinkedList.traversalRight();
+        myDoubleLinkedList.traversalLeft();
+        System.out.println("Eliminamos el 10");
+        myDoubleLinkedList.delete(10);
+        myDoubleLinkedList.delete(20);
+        myDoubleLinkedList.delete(30);
+        System.out.println("Lista resultante:");
+        myDoubleLinkedList.traversalRight();
     }
 }
