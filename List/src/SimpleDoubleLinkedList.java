@@ -18,7 +18,15 @@ public class SimpleDoubleLinkedList extends DoubleList {
             last = newNode;
         }
     }
-
+    int size(){
+        DoubleNode p = first;
+        int size=0;
+        while(p!=null){
+            size+=1;
+            p=p.getRight();
+        }
+        return size;
+    }
     @Override
     void traversalRight() {
         if (first == null)
