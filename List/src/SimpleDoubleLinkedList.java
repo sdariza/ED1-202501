@@ -18,15 +18,17 @@ public class SimpleDoubleLinkedList extends DoubleList {
             last = newNode;
         }
     }
-    int size(){
+
+    int size() {
         DoubleNode p = first;
-        int size=0;
-        while(p!=null){
-            size+=1;
-            p=p.getRight();
+        int size = 0;
+        while (p != null) {
+            size += 1;
+            p = p.getRight();
         }
         return size;
     }
+
     @Override
     void traversalRight() {
         if (first == null)
@@ -41,6 +43,7 @@ public class SimpleDoubleLinkedList extends DoubleList {
             System.out.println();
         }
     }
+
     @Override
     void traversalLeft() {
         if (first == null)
@@ -55,10 +58,17 @@ public class SimpleDoubleLinkedList extends DoubleList {
             System.out.println();
         }
     }
+
     @Override
-    Node search(int theData) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+    DoubleNode search(int theData) {
+        DoubleNode aux = first;
+        while (aux != null) {
+            if (aux.getData() == theData)
+                return aux;
+            else
+                aux = aux.getRight();
+        }
+        return null;
     }
 
     @Override
@@ -70,18 +80,18 @@ public class SimpleDoubleLinkedList extends DoubleList {
                     first = p.getRight();
                     p.getRight().setLeft(null);
                     p.setRight(null);
-                }else{
+                } else {
                     first = null;
                     last = null;
                 }
-            }else{
+            } else {
                 if (theData == last.getData()) {
                     last = last.getLeft();
                     last.getLeft().setRight(null);
                     last.setLeft(null);
-                }else{
+                } else {
                     p = p.getRight();
-                    while(p!=last && p.getData() != theData){
+                    while (p != last && p.getData() != theData) {
                         p = p.getRight();
                     }
                     if (p.getData() == theData) {
@@ -89,13 +99,13 @@ public class SimpleDoubleLinkedList extends DoubleList {
                         p.getLeft().setRight(p.getRight());
                         p.setLeft(null);
                         p.setRight(null);
-                    }else{
+                    } else {
                         System.out.println("Dato no encontrado!");
                     }
                 }
             }
         }
-        
+
     }
 
 }
