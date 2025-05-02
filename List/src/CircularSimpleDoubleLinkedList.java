@@ -1,0 +1,92 @@
+public class CircularSimpleDoubleLinkedList extends DoubleList {
+
+    @Override
+    Node search(int theData) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'search'");
+    }
+
+    @Override
+    void delete(int theData) {
+        if (first == null) {
+            System.out.println("Empty list");
+            return;
+        }
+
+        DoubleNode current = first;
+        do {
+            if (current.getData() == theData) {
+                if (current == first && current == last) {
+                    first = null;
+                    last = null;
+                } else if (current == first) {
+                    first = first.getRight();
+                    first.setLeft(last);
+                    last.setRight(first);
+                } else if (current == last) {
+                    last = last.getLeft();
+                    last.setRight(first);
+                    first.setLeft(last);
+                } else {
+                    current.getLeft().setRight(current.getRight());
+                    current.getRight().setLeft(current.getLeft());
+                }
+                System.out.println("Deleted: " + theData);
+                return;
+            }
+            current = current.getRight();
+        } while (current != first);
+
+        System.out.println("Element not found: " + theData);
+    }
+
+    void addStack(int theData) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addStack'");
+    }
+
+    @Override
+    void addQueue(int theData) {
+        DoubleNode newNode = new DoubleNode(theData);
+        if (first == null) {
+            first = newNode;
+            last = first;
+        } else {
+            last.setRight(newNode);
+            newNode.setLeft(last);
+            last = newNode;
+        }
+        last.setRight(first);
+        first.setLeft(last);
+    }
+
+    @Override
+    void traversalRight() {
+        if (first == null)
+            System.out.println("Empty list");
+        else {
+            System.out.println("Elementos en la lista:");
+            DoubleNode aux = first;
+            do {
+                System.out.print(aux.getData() + "|");
+                aux = aux.getRight();
+            } while (aux != first);
+            System.out.println();
+        }
+    }
+
+    @Override
+    void traversalLeft() {
+        if (first == null)
+            System.out.println("Empty list");
+        else {
+            System.out.println("Elementos en la lista:");
+            DoubleNode aux = last;
+            do {
+                System.out.print(aux.getData() + "|");
+                aux = aux.getLeft();
+            } while (aux != last);
+            System.out.println();
+        }
+    }
+}

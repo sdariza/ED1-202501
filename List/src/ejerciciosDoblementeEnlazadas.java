@@ -45,7 +45,7 @@ public class ejerciciosDoblementeEnlazadas {
         n1 = list.first;
         n2 = lista.first;
 
-        for (int i = 0; i < list.size();) {
+        while (n1 != null) {
             System.out.println("n1: " + n1.getData());
             System.out.println("n2: " + n2.getData());
 
@@ -120,5 +120,20 @@ public class ejerciciosDoblementeEnlazadas {
         }
         System.out.println("Resultado descendente: ");
         PTR1.traversalLeft();
+
+        // EJERCICIO 3:
+        /*
+         * Dada una lista DOBLEMENTE ENLAZADA ordenada ascendentemente ya
+         * creada, PTR1, y otra lista circular que también ya está creada pero que no
+         * está
+         * ordenada ni se permite hacerlo, llamada PTR2, realice las siguientes
+         * operaciones:
+         */
+
+        /*
+         * a. Tomar los elementos de PTR2 que no están en PTR1 e irlos insertando en
+         * la posición correcta de PTR1.
+         */
+
     }
 }
