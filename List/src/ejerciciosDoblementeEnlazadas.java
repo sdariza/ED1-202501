@@ -54,9 +54,7 @@ public class ejerciciosDoblementeEnlazadas {
                 n2 = n2.getRight();
             }
             System.out.println(n2.getData() + " es mayor/igual que " + n1.getData());
-            if (n1 == list.first) {
-                list.first = n1.getRight();
-            }
+            list.first = n1.getRight();
             aux = n1.getRight();
             aux2 = n2.getLeft();
             n2.setLeft(n1);
@@ -72,5 +70,55 @@ public class ejerciciosDoblementeEnlazadas {
 
             lista.traversalRight();
         }
+        // EJERCICIO 2:
+        /*
+         * Dadas dos listas DOBLEMENTE ENLAZADAS ORDENADAS ascendentemente ya
+         * creadas, PTR1 y PTR2, hacer un algoritmo que elimine de la lista PTR1 los
+         * elementos de PTR1 que no estén en PTR2. El resultado de la lista PTR1 debe
+         * mostrarse en forma descendente.
+         */
+        System.out.println(" ");
+        System.out.println("----------------*----------------");
+        System.out.println("EJERCICIO 2: ");
+        SimpleDoubleLinkedList PTR1 = new SimpleDoubleLinkedList();
+        PTR1.addQueue(1);
+        PTR1.addQueue(2);
+        PTR1.addQueue(3);
+        PTR1.addQueue(4);
+        PTR1.addQueue(13);
+        SimpleDoubleLinkedList PTR2 = new SimpleDoubleLinkedList();
+        PTR2.addQueue(2);
+        PTR2.addQueue(3);
+        PTR2.addQueue(5);
+        PTR2.addQueue(8);
+        PTR2.addQueue(13);
+        System.out.println("Lista PTR1:");
+        PTR1.traversalRight();
+        System.out.println("Lista PTR2:");
+        PTR2.traversalRight();
+        n1 = PTR1.first;
+        n2 = PTR2.first;
+
+        while (n1 != null) {
+            boolean d = true;
+            while (n1.getData() >= n2.getData() & d == true) {
+                if (n1.getData() == n2.getData()) {
+                    d = false;
+                } else {
+                    n2 = n2.getRight();
+                }
+            }
+            if (d) {
+                int n = n1.getData();
+                System.out.println("se eliminó el: " + n);
+                n1 = n1.getRight();
+                PTR1.delete(n);
+                PTR1.traversalRight();
+            } else {
+                n1 = n1.getRight();
+            }
+        }
+        System.out.println("Resultado descendente: ");
+        PTR1.traversalLeft();
     }
 }
