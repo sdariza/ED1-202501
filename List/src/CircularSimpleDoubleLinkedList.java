@@ -1,9 +1,23 @@
 public class CircularSimpleDoubleLinkedList extends DoubleList {
 
     @Override
-    Node search(int theData) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+    DoubleNode search(int theData) {
+        if (first == null) {
+            System.out.println("Empty list");
+            return null;
+        }
+
+        DoubleNode current = first;
+        do {
+            if (current.getData() == theData) {
+                System.out.println("Found: " + theData);
+                return current;
+            }
+            current = current.getRight();
+        } while (current != first);
+
+        System.out.println("Element not found: " + theData);
+        return null;
     }
 
     @Override
