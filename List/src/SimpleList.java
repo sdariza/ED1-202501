@@ -1,5 +1,5 @@
 public class SimpleList extends List {
-
+    
     @Override
     void addStack(int theData) {
         Node newNode = new Node(theData);
@@ -9,7 +9,15 @@ public class SimpleList extends List {
             newNode.next = first;
         first = newNode;
     }
-
+    int size(){
+        Node p = first;
+        int size=0;
+        while(p!=null){
+            size+=1;
+            p=p.next;
+        }
+        return size;
+    }
     @Override
     void addQueue(int theData) {
         Node newNode = new Node(theData);
@@ -17,14 +25,10 @@ public class SimpleList extends List {
             first = newNode;
             last = first;
         } else {
-            // Node aux = first;
-            // while (aux.next != null) {
-            // aux = aux.next;
-            // }
-            // aux.next = newNode;
             last.next = newNode;
             last = newNode;
         }
+
     }
 
     @Override
