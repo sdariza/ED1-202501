@@ -43,8 +43,26 @@ public class CircularSimpleList extends List {
 
     @Override
     void delete(int theData) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if (first != null) {
+            Node aux = null;
+            if (first.data == theData) {
+                last.next = first.next;
+                first = first.next;
+            } else {
+                Node p = first;
+                while (p.next != first && p.data != theData) {
+                    aux = p;
+                    p = p.next;
+                }
+                if (p.data == theData) {
+                    aux.next = p.next;
+                    p.next = null;
+                    if (p == last) {
+                        last = aux;
+                    }
+                }
+            }
+        }
     }
 
 }
