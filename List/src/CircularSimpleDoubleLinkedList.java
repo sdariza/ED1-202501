@@ -31,19 +31,15 @@ public class CircularSimpleDoubleLinkedList extends DoubleList {
         do {
             if (current.getData() == theData) {
                 if (current == first && current == last) {
-                    first = null;
-                    last = null;
-                } else if (current == first) {
-                    first = first.getRight();
-                    first.setLeft(last);
-                    last.setRight(first);
-                } else if (current == last) {
-                    last = last.getLeft();
-                    last.setRight(first);
-                    first.setLeft(last);
+                    first = last = null;
                 } else {
                     current.getLeft().setRight(current.getRight());
                     current.getRight().setLeft(current.getLeft());
+
+                    if (current == first)
+                        first = current.getRight();
+                    if (current == last)
+                        last = current.getLeft();
                 }
                 System.out.println("Deleted: " + theData);
                 return;

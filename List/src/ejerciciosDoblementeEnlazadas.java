@@ -1,6 +1,5 @@
 public class ejerciciosDoblementeEnlazadas {
     public static void main(String[] args) {
-        // creación de lista #1
 
         // EJERCICIO 3:
         /*
@@ -35,76 +34,87 @@ public class ejerciciosDoblementeEnlazadas {
         ptr1.traversalRight();
         System.out.println("Lista PTR2:");
         ptr2.traversalRight();
-        DoubleNode p2 = ptr2.first, p1, aux = null, aux2 = null;
+        DoubleNode p2 = ptr2.first, p1, aux = null;
 
         do {
             if (ptr1.search(p2.getData()) == null) {
-                System.out.println("hay q instertar el: " + p2.getData());
-                p1 = ptr1.first;
-                if (p1 == null) {
+                aux = p2.getRight();
+                if (p2.getData() > ptr1.last.getData()) {
                     ptr1.addQueue(p2.getData());
                 } else {
-                    while (p1 != null) {
-                        // ptr1.traversalRight();
-                        if (p1.getData() > p2.getData()) {
-                            System.out.println("el " + p2.getData() + " es menor que el " + p1.getData()
-                                    + "por lo tanto se inserta antes");
-                            aux = p1.getLeft();
-                            if (p1 == ptr1.first) {
-                                ptr1.first = p2;
-                            }
-                            aux2 = p2.getRight();
-                            p1.setLeft(p2);
-                            p1.getLeft().setRight(p1);
-                            p2.setLeft(aux);
-                            if (aux != null) {
-                                aux.setRight(p2);
-                            }
-                            ptr1.traversalRight();
+                    p1 = ptr1.first;
+                    if (p2.getData() < ptr1.first.getData()) {
+                        p1.setLeft(p2);
+                        p2.setRight(ptr1.first);
+                        ptr1.first.setLeft(p2);
+                        p2.setLeft(null);
+                    } else {
+                        while (p2.getData() > p1.getData()) {
+                            p1 = p1.getRight();
                         }
-                        System.out.println("el " + p2.getData() + " es mayor que el " + p1.getData()
-                                + "por lo tanto continuamos el recorrido");
-                        aux = p1;
-                        p1 = p1.getRight();
-                        // System.out.println("p1: " + p1.getData());
-                    }
-                    if (ptr1.search(p2.getData()) == null) {
-                        System.out.println("el " + p2.getData() + " es mayor que el " + aux.getData()
-                                + "por lo tanto se inserta al final");
-                        ptr1.addQueue(p2.getData());
-                        aux2 = p2.getRight();
-                        System.out.println("aux2: " + aux2.getData());
+                        p1.getLeft().setRight(p2);
+                        p2.setLeft(p1.getLeft());
+                        p2.setRight(p1);
+                        p1.setLeft(p2);
                     }
                 }
-                p2 = aux2;
+                p2 = aux;
             } else {
-                System.out.println("el " + p2.getData() + " ya existe en la lista PTR1");
                 p2 = p2.getRight();
             }
         } while (p2 != ptr2.first);
         System.out.println("Lista PTR1:");
         ptr1.traversalRight();
-        System.out.println("Lista PTR2:");
-        ptr2.traversalRight();
+        // System.out.println("Lista PTR2:");
+        // Hay que tener en cuenta que los nodos de la lista circular se insertaron en
+        // la otra lista, por lo tanto la lista se rompió.
+        // ptr2.traversalRight();
 
         /*
          * Los elementos que son comunes en las dos listas se deben eliminar de
          * ambas listas.
          */
-        p1 = ptr1.first;
+        System.out.println("------SEGUNDA PARTE: ");
+        SimpleDoubleLinkedList ptr11 = new SimpleDoubleLinkedList();
+        ptr11.addQueue(1);
+        ptr11.addQueue(2);
+        ptr11.addQueue(3);
+        ptr11.addQueue(4);
+        ptr11.addQueue(13);
+        CircularSimpleDoubleLinkedList ptr22 = new CircularSimpleDoubleLinkedList();
+        ptr22.addQueue(12);
+        ptr22.addQueue(3);
+        ptr22.addQueue(15);
+        ptr22.addQueue(4);
+        ptr22.addQueue(1);
+        ptr22.addQueue(16);
+        p1 = ptr11.first;
         while (p1 != null) {
-            if (ptr2.search(p1.getData()) != null) {
+            if (ptr22.search(p1.getData()) != null) {
                 aux = p1.getRight();
-                System.out.println("se eliminó el: " + p1.getData());
-                ptr1.delete(p1.getData());
-                ptr2.delete(p1.getData());
-                ptr1.traversalRight();
-                ptr2.traversalRight();
-
+                ptr11.delete(p1.getData());
+                ptr22.delete(p1.getData());
                 p1 = aux;
             } else {
                 p1 = p1.getRight();
             }
         }
+        System.out.println("RESULTADOS: ");
+        System.out.println("Lista PTR1:");
+        ptr11.traversalRight();
+        System.out.println("Lista PTR2:");
+        ptr22.traversalRight();
+
+        System.out.println("--------------TERCERA PARTE: ");
+        DoubleNode p = ptr22.first, t;
+
+        while (ptr22.first != null) {
+            t = p.getRight();
+            ptr22.delete(p.getData());
+            ptr22.traversalRight();
+            p = t;
+        }
+        System.out.println("Lista PTR2 destruida:");
+        ptr22.traversalRight();
     }
 }

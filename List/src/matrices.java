@@ -1,10 +1,11 @@
 public class matrices {
     public static void main(String[] args) {
+        System.out.println("hola wilmar");
         ListaMatriz lista = new ListaMatriz();
-        lista.add(0, 0, 2);
+        lista.add(0, 0, 1);
         lista.add(0, 1, 2);
-        lista.add(1, 1, 2);
-        lista.add(2, 2, 2);
+        lista.add(1, 1, 3);
+        lista.add(2, 2, 4);
 
         // EN EL CASO DEL EJEMPLO DEL ENUNCIADO DEL PARCIAL LA MATRIZ ES DE
         // 3 FILAS Y 3 COLUMNAS Y N=3
@@ -49,6 +50,16 @@ public class matrices {
             matriz = elevar(matriz, columnas, m);
         }
         matriz.traversal();
+        nodoMatriz q = lista.first;
+        Node h = matriz.first;
+        while (h != null) {
+            if (h.data != 0) {
+                q.valor = h.data;
+                q = q.siguiente;
+            }
+            h = h.next;
+        }
+        lista.traversal();
     }
 
     public static SimpleList elevar(SimpleList listfilas, SimpleList listcolumnas, int m) {
@@ -61,13 +72,11 @@ public class matrices {
                 sum = 0;
                 f = af;
                 for (int j = 0; j < m; j++) {
-                    System.out.println("multiplicamos: f= " + f.data + "*" + " c= " + c.data);
                     k = f.data * c.data;
                     sum += k;
                     f = f.next;
                     c = c.next;
                 }
-                System.out.println("suma: " + sum);
                 matriz.addQueue(sum);
             }
             sum = 0;

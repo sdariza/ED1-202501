@@ -18,4 +18,12 @@ public class ListaMatriz {
 
     }
 
+    public void traversal() {
+        nodoMatriz nd = first;
+        while (nd != null) {
+            System.out.print("( " + nd.fila + ", " + nd.columna + ", " + nd.valor + " ) -> ");
+            nd = nd.siguiente;
+        }
+        System.out.println("NULL");
+    }
 }
